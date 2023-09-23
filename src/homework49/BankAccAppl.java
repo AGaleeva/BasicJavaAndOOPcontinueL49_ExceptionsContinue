@@ -1,7 +1,5 @@
 package homework49;
 
-import exceptions_continue.AccountCreateException;
-
 import java.util.*;
 
 public class BankAccAppl {
@@ -27,7 +25,7 @@ public class BankAccAppl {
         List<Account> createdAccounts = new ArrayList<>();
         for (Map.Entry<String, String> entry : createEntryMap(listOwners).entrySet()) {
             try {
-                createdAccounts.add(createNewAccount(entry));
+                createdAccounts.add(accountCreator(entry));
             } catch (AccountCreationExceptions exception) {
                 System.out.println(exception.getErrors());
             }
@@ -46,7 +44,7 @@ public class BankAccAppl {
         return mapAccOwners;
     }
 
-    public static Account createNewAccount(Map.Entry<String, String> entry) throws AccountCreationExceptions {
+    public static Account accountCreator(Map.Entry<String, String> entry) throws AccountCreationExceptions {
         List<String> errors = new ArrayList<>();
         AccountCreationExceptions exceptions = new AccountCreationExceptions(errors);
         if (entry == null || entry.getKey().equals(" ") || entry.getValue().equals(" ")) {
